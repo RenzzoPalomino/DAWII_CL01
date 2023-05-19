@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+
+<html xmlns:="http//www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Modificar Alumno</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    </head>
+    <body>
+        <div class="container">
+        <h1>Datos del Curso</h1>
+        <a type="button" class="btn btn-danger" th:href="@{/listadoCursos}">Regresar</a>
+        <br/>
+        <form th:action="@{/guardarCurso}" method="post" th:object="${curso}">
+            
+            <input type="hidden" name="idCurso" th:field="*{id_curso}"/>
+            
+            <br/>
+            <label for="nombre"> Curso </label>
+            <input type="text" class="form-control" required name="nombre" th:field="*{nombre}"/>
+            <br/>
+            <label for="creditos"> Creditos </label>
+            <input type="number" title="Créditos admitidos: de 2 a 5 créditos"class="form-control" required name="creditos" min="2" max="5" th:field="*{creditos}"/>
+            <br/>
+            <label for="fechaNacimiento"> Fecha de Inicio </label>
+            <input type="date" class="form-control" required name="fechaNacimiento" th:field="*{inicio}"/>
+            <br/>
+            
+            
+            <input class="btn btn-success" type="submit" name="guardarCurso" value="Guardar"/>
+            
+        </form>
+        </div>
+    </body>
+</html>

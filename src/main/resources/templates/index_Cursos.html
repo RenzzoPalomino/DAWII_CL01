@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html xmlns:="http//www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>CRUD CURSOS</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    </head>
+    
+    <body> 
+        <div class="container">
+        
+        <header>
+           <header>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand">CL01_DAWII</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{listadoAlumnos}">LISTADO DE ALUMNOS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{listadoCursos}">LISTADO DE CURSOS</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </header>
+        </header>
+        <br><br>
+        <a class="btn btn-primary" role="button"  th:href="@{/agregarCurso}"> Registrar Nuevo curso </a>
+        <br><br>
+        <div th:if="${cursos!= null and !cursos.empty}">
+            <table class="table table-hover">    
+                <thead>             
+                    <tr>
+                        <th>Nombre del curso</th>
+                        <th>Créditos</th>
+                        <th>Fecha de inicio</th>
+                        <th>Accion</th>
+                    </tr> 
+                    </thead>
+                <tbody>
+                    <tr th:each="Curso:${cursos}">
+                        <td th:text="${Curso.nombre}"></td>
+                        <td th:text="${Curso.creditos}"></td>
+                        <td th:text="${Curso.inicio}"></td> 
+                        <td>
+                            <a th:href="@{/editarCurso/}     + ${Curso.id_curso}" th:text="Editar"></a>
+                            <a th:href="@{/eliminarCurso/}     + ${Curso.id_curso}" th:text="Eliminar"></a>
+                        </td>
+                    </tr>
+                    </tbody>  
+            </table>
+        </div>
+            
+        <div th:if="${cursos==null or cursos.empty}">
+                La lista de cursos está vacía.
+        </div>
+        </div>
+    </body>
+</html>
